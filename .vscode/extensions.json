@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-rliermarsh.ruff",
+        "tamasfe.even-better-toml",
+        "davidanson.vscode-markdownlint"
+    ]
+}

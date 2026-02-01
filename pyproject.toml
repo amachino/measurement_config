@@ -1,0 +1,91 @@
+[build-system]
+requires = ["uv_build>=0.9.28,<0.10.0"]
+build-backend = "uv_build"
+
+[project]
+name = "measurement_config"
+version = "0.1.0"
+requires-python = ">=3.10"
+authors = [{ name = "Yasunari Suzuki" }, { name = "Akinori Machino" }]
+description = "A configuration library for quantum measurement setups with unit support."
+readme = "README.md"
+license = { file = "LICENSE" }
+dependencies = [
+    "numpy ~= 2.0",
+    "protobuf ~= 6.0",
+    "pydantic ~= 2.0",
+    "sympy ~= 1.0",
+    "typedunits ~= 0.0",
+]
+
+[dependency-groups]
+dev = ["ipykernel", "pyright", "pytest", "pytest-cov", "pytest-xdist", "ruff"]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning:tunits\\..*"]
+
+[tool.pyright]
+include = ["src", "tests"]
+typeCheckingMode = "basic"
+
+[tool.ruff.lint]
+select = [
+    "ANN",  # flake8-annotations
+    "S",    # flake8-bandit
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "SIM",  # flake8-simplify
+    "SLF",  # flake8-self
+    "PT",   # flake8-pytest-style
+    "TID",  # flake8-tidy-imports
+    "I",    # isort
+    "PERF", # Perflint
+    "E",    # pycodestyle
+    "D",    # pydocstyle
+    "F",    # Pyflakes
+    "UP",   # pyupgrade
+    "RUF",  # Ruff-specific rules
+    "TRY",  # tryceratops
+
+    # pydocstyle
+    "D213", # multi-line-summary-second-line
+]
+
+ignore = [
+    # flake8-annotations
+    "ANN002", # missing-type-args
+    "ANN003", # missing-type-kwargs
+    "ANN204", # missing-return-type-special-method
+    "ANN401", # any-type
+
+    # pycodestyle
+    "E501", # line-too-long
+
+    # Ruff-specific rules
+    "RUF001", # ambiguous-unicode-character-string
+    "RUF002", # ambiguous-unicode-character-docstring
+    "RUF003", # ambiguous-unicode-character-comment
+
+    # tryceratops
+    "TRY003", # raise-vanilla-args
+]
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = [
+    # Pyflakes
+    "F401", # unused-import
+
+    # flake8-bandit
+    "S101", # assert
+]
+"tests/**/*.py" = [
+    "ANN", # flake8-annotations
+
+    # flake8-bandit
+    "S101", # assert
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"

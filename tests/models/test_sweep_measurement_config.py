@@ -8,11 +8,11 @@ from measurement_config.models import (
     DataAcquisitionConfig,
     FrequencyConfig,
     ParameterSweepConfig,
+    ParameterSweepContent,
     ParametricSequenceConfig,
     ParametricSequencePulseCommand,
     SweepMeasurementConfig,
 )
-from measurement_config.models.sweep_measurement_config import ParameterSweepContent
 
 
 def _make_parametric_sequence() -> ParametricSequenceConfig:

@@ -57,6 +57,7 @@ def test_model_roundtrip_with_custom_types():
     )
 
     data = model.to_dict()
+    assert data["__meta__"]["version"] == 0
     assert data["array"]["__type__"].startswith("numpy.")
     assert data["complex_array"]["__type__"].startswith("numpy.")
     assert data["scalar"]["__type__"].startswith("numpy.")
@@ -68,7 +69,9 @@ def test_model_roundtrip_with_custom_types():
     assert data["complex_value"]["__type__"].startswith("python.")
     assert data["complex_list"][0]["__type__"].startswith("python.")
 
-    restored = ExampleModel.from_dict(data)
+    data_with_meta = dict(data)
+    data_with_meta["__meta__"] = {"version": 123}
+    restored = ExampleModel.from_dict(data_with_meta)
     assert isinstance(restored.array, np.ndarray)
     assert isinstance(restored.complex_array, np.ndarray)
     assert isinstance(restored.scalar, np.generic)
@@ -85,6 +88,8 @@ def test_model_roundtrip_with_custom_types():
     np.testing.assert_array_equal(restored.complex_scalar, model.complex_scalar)
 
     json_str = model.to_json(indent=2)
+    assert '"__meta__"' in json_str
+    assert '"version": 0' in json_str
     restored_from_json = ExampleModel.from_json(json_str)
     np.testing.assert_array_equal(restored_from_json.array, model.array)
     np.testing.assert_array_equal(

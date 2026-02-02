@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.9.28,<0.10.0"]
+requires = ["uv_build >= 0.9.28, <0.10.0"]
 build-backend = "uv_build"
 
 [project]
@@ -11,11 +11,11 @@ description = "A configuration library for quantum measurement setups with unit 
 readme = "README.md"
 license = { file = "LICENSE" }
 dependencies = [
-    "numpy ~= 2.0",
-    "protobuf ~= 6.0",
-    "pydantic ~= 2.0",
-    "sympy ~= 1.0",
-    "typedunits ~= 0.0",
+    "numpy >= 1.0",
+    "protobuf >= 6.0",
+    "pydantic >= 2.0",
+    "sympy >= 1.0",
+    "typedunits >= 0.0",
 ]
 
 [dependency-groups]

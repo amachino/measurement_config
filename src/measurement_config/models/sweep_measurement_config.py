@@ -6,8 +6,8 @@ from typing import Literal
 
 import tunits
 
-from measurement_config.core.model import Model
-from measurement_config.core.typing import ValueArrayLike
+from measurement_config.core import Model
+from measurement_config.typing import ValueArrayLike
 
 
 class ParametricSequencePulseCommand(Model):

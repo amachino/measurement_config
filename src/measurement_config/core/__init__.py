@@ -1,11 +1,10 @@
-"""Core data models and expression utilities."""
+"""Core classes for measurement configuration."""
 
 from .expression import Expression
-from .model import Model
-from .typing import ValueArrayLike
+from .model import Model, MutableModel
 
 __all__ = [
     "Expression",
     "Model",
-    "ValueArrayLike",
+    "MutableModel",
 ]

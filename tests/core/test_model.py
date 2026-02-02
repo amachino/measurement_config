@@ -8,7 +8,7 @@ import numpy as np
 import numpy.typing as npt
 import tunits
 
-from measurement_config.core.model import Model, MutableModel
+from measurement_config.core import Model, MutableModel
 
 
 class ExampleModel(Model):
